@@ -1,0 +1,26 @@
+apiVersion: "apps/v1beta1"
+kind: StatefulSet
+metadata:
+  name: antidote-dc-${N}
+spec:
+  serviceName: antidote-dc-${N}
+  replicas: ${Replicas}
+  template:
+    metadata:
+      labels:
+        app: antidote
+    spec:
+      containers:
+      - name: antidote
+        image: mweber/antidotedb:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8087
+          name: pb
+        env:
+          - name: NODE_NAME
+            value: "antidote"
+          - name: IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP

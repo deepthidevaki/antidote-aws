@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: antidote-setup
+  labels:
+    app: antidote
+spec:
+  serviceName: antidote-setup
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: antidote
+    spec:
+      containers:
+        - image: erlang:19
+          name: antidote-setup
+          command: ["/code/link.sh"]
+          args: ["${N}", "${Replicas}"]
+          volumeMounts:
+          - name: host-mount
+            mountPath: /code
+      volumes:
+      - name: host-mount
+        hostPath:
+          path: /home/docker/code/
