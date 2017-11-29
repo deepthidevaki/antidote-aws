@@ -1,12 +1,3 @@
-#firewall disable for minikube mount to work
-ufw disable
-
-#start minikube cluster
-minikube start
-
-#mount local directory with scripts to the minikube vm
-minikube mount ./code/:/home/docker/code -v 10
-
 #Generate template files
 scripts/genConfig.sh #numdcs #numnodesindc
 
