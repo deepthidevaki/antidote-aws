@@ -1,10 +1,10 @@
 apiVersion: "apps/v1beta1"
 kind: StatefulSet
 metadata:
-  name: antidote-dc-${N}
+  name: antidote-dc-1
 spec:
-  serviceName: antidote-dc-${N}
-  replicas: ${Replicas}
+  serviceName: antidote-dc-1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -25,4 +25,4 @@ spec:
               fieldRef:
                 fieldPath: status.podIP
       nodeSelector:
-        dc: "${N}"
+          dc: "1"

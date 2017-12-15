@@ -2,6 +2,7 @@ numdcs=$1
 numnodes=$2
 templatedir='kube-templates'
 gendir='kube-configs'
+gendirsetup='kube-config-setup'
 rm $gendir/*
 for i in `seq 1 ${numdcs}`; do
     dcnum=$i
@@ -9,4 +10,4 @@ for i in `seq 1 ${numdcs}`; do
     sed -e "s/\${N}/${dcnum}/" -e "s/\${Replicas}/${numnodes}/" ${templatedir}/antidote-dc-N-statefulset.yaml > ${gendir}/antidote-dc-${dcnum}-statefulset.yaml
 done
 
-sed -e "s/\${N}/${numdcs}/" -e "s/\${Replicas}/${numnodes}/" ${templatedir}/antidote-setup.yaml > ${gendir}/antidote-setup.yaml
+sed -e "s/\${N}/${numdcs}/" -e "s/\${Replicas}/${numnodes}/" ${templatedir}/antidote-setup.yaml > ${gemdorsetup}/antidote-setup.yaml

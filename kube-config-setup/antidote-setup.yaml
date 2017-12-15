@@ -16,7 +16,7 @@ spec:
         - image: erlang:19
           name: antidote-setup
           command: ["/bin/sh"]
-          args: ["-c", "git clone https://github.com/deepthidevaki/antidote-aws; cd antidote-aws; code/link.sh ${N} ${Replicas}"]
+          args: ["-c", "git clone https://github.com/deepthidevaki/antidote-aws; cd antidote-aws; code/link.sh 2 2"]
           volumeMounts:
           - name: host-mount
             mountPath: /code
